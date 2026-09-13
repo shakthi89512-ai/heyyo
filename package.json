@@ -1,0 +1,20 @@
+{
+  "name": "serene-peaceful-pomodoro",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A calm, minimalist Pomodoro timer designed to help you focus with clarity and intention.",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "echo 'Static website: no build step required'"
+  },
+  "keywords": [
+    "pomodoro",
+    "minimalist",
+    "timer",
+    "productivity",
+    "zen",
+    "focus"
+  ],
+  "author": "",
+  "license": "MIT"
+}

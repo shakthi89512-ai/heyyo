@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A calm, peaceful, and minimalist Pomodoro timer designed to help you focus with clarity and intention.">
+  <meta name="theme-color" content="#557560" id="themeColorMeta">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Serene">
+  
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Serene — Peaceful Pomodoro">
+  <meta property="og:description" content="A calm, peaceful, and minimalist Pomodoro timer designed to help you focus with clarity and intention.">
+
+  <!-- Favicon & PWA Manifest -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="favicon.svg">
+
+  <title>Serene — Peaceful Pomodoro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container" id="app">
+    <!-- Top Minimal Navigation -->
+    <header class="navbar">
+      <div class="logo">
+        <span class="logo-mark"></span>
+        <span class="logo-text">serene</span>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Ambient Sound Button -->
+        <button id="ambientBtn" class="icon-btn" title="Toggle peaceful ambient sound" aria-label="Toggle ambient sound">
+          <svg class="icon icon-sound-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+            <line x1="23" y1="9" x2="17" y2="15"/>
+            <line x1="17" y1="9" x2="23" y2="15"/>
+          </svg>
+          <svg class="icon icon-sound-on hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+          </svg>
+          <span class="btn-caption">Ambient</span>
+        </button>
+
+        <!-- Breathe / Center Button -->
+        <button id="breatheBtn" class="icon-btn" title="Breathing Exercise" aria-label="Open breathing guide">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="9"/>
+            <circle cx="12" cy="12" r="4"/>
+          </svg>
+          <span class="btn-caption">Breathe</span>
+        </button>
+
+        <!-- History Drawer Button -->
+        <button id="historyBtn" class="icon-btn" title="Completed Goals History" aria-label="Open history">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 8v4l3 3"/>
+            <path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5"/>
+          </svg>
+          <span class="btn-caption">History</span>
+        </button>
+
+        <!-- Settings Button -->
+        <button id="settingsBtn" class="icon-btn" title="Timer Settings" aria-label="Open settings">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </button>
+
+        <!-- Theme Toggle Button -->
+        <button id="themeToggleBtn" class="icon-btn" title="Toggle Theme (Light / Dark)" aria-label="Toggle dark mode">
+          <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <svg class="icon icon-sun hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-stage">
+      <!-- Mode Tabs (Focus, Short Break, Long Break, Custom) -->
+      <nav class="mode-tabs" aria-label="Timer Modes">
+        <button class="mode-btn active" data-mode="focus">Focus</button>
+        <button class="mode-btn" data-mode="shortBreak">Short Break</button>
+        <button class="mode-btn" data-mode="longBreak">Long Break</button>
+        <button class="mode-btn" data-mode="custom">Custom</button>
+      </nav>
+
+      <!-- Custom duration quick selector -->
+      <div id="customDurationRow" class="custom-duration-row hidden">
+        <label for="customMinutesInput" class="custom-label">Duration:</label>
+        <div class="custom-input-wrap">
+          <input type="number" id="customMinutesInput" min="1" max="180" value="45" aria-label="Custom duration in minutes">
+          <span class="custom-unit">minutes</span>
+        </div>
+        <button id="applyCustomBtn" class="text-link-btn">Set</button>
+      </div>
+
+      <!-- Goal / Intention Section -->
+      <section class="goal-container">
+        <!-- Input state (when idle/editable) -->
+        <div id="goalInputWrap" class="goal-input-wrap">
+          <input 
+            type="text" 
+            id="goalInput" 
+            class="goal-input" 
+            placeholder="What is your focus for this session?" 
+            maxlength="100"
+            autocomplete="off"
+            aria-label="Your session goal or focus"
+          >
+          <span class="goal-hint">Set your intention, then begin</span>
+        </div>
+
+        <!-- Running / Display state (calm focused card) -->
+        <div id="goalDisplayWrap" class="goal-display-wrap hidden">
+          <span class="goal-label">Currently Focusing On</span>
+          <div class="goal-badge">
+            <span class="goal-badge-dot"></span>
+            <p id="goalDisplayText" class="goal-display-text"></p>
+            <button id="editGoalBtn" class="edit-goal-btn" title="Edit goal" aria-label="Edit goal">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 20h9"/>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Circular Timer Display -->
+      <div class="timer-viewport">
+        <div class="timer-circle-wrap">
+          <svg class="progress-ring" viewBox="0 0 340 340" aria-hidden="true">
+            <!-- Background track -->
+            <circle 
+              class="progress-ring-track" 
+              cx="170" 
+              cy="170" 
+              r="150"
+            />
+            <!-- Animated progress bar -->
+            <circle 
+              id="progressRingIndicator"
+              class="progress-ring-indicator" 
+              cx="170" 
+              cy="170" 
+              r="150"
+            />
+          </svg>
+
+          <!-- Inner Timer Values -->
+          <div class="timer-content">
+            <div id="timerDisplay" class="timer-digits" aria-live="polite">25:00</div>
+            <div id="sessionStatusText" class="timer-status">Ready to begin</div>
+            <div id="sessionCountText" class="session-counter">Session 1 of 4</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Controls -->
+      <div class="timer-actions">
+        <!-- Reset Button -->
+        <button id="resetBtn" class="action-btn secondary-btn" title="Reset timer (R)" aria-label="Reset timer">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+            <path d="M3 3v5h5"/>
+          </svg>
+          <span>Reset</span>
+        </button>
+
+        <!-- Main Start / Pause Button -->
+        <button id="startPauseBtn" class="action-btn primary-btn" aria-label="Start or pause timer">
+          <span class="btn-icon">
+            <svg id="playIcon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+            <svg id="pauseIcon" class="hidden" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+              <rect x="6" y="4" width="4" height="16" rx="1"/>
+              <rect x="14" y="4" width="4" height="16" rx="1"/>
+            </svg>
+          </span>
+          <span id="startPauseText">Begin Focus</span>
+        </button>
+
+        <!-- Skip Button -->
+        <button id="skipBtn" class="action-btn secondary-btn" title="Skip to next session" aria-label="Skip session">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 4 15 12 5 20 5 4"/>
+            <line x1="19" y1="5" x2="19" y2="19"/>
+          </svg>
+          <span>Skip</span>
+        </button>
+      </div>
+
+      <!-- Peaceful Zen Quote / Mindful Reminder -->
+      <footer class="zen-footer">
+        <p id="zenQuote" class="zen-quote">"Do one thing with full presence, then move to the next."</p>
+        <div class="shortcuts-hint">Press <kbd>Space</kbd> to toggle &bull; <kbd>R</kbd> to reset &bull; <kbd>Z</kbd> for zen mode</div>
+      </footer>
+    </main>
+
+    <!-- Session Completion Notice Card -->
+    <div id="completionNotice" class="completion-notice hidden" role="alert">
+      <div class="notice-inner">
+        <span class="notice-icon">🌱</span>
+        <div class="notice-text">
+          <h4 id="completionTitle">Session Complete</h4>
+          <p id="completionMessage">Well done on taking intentional time for yourself.</p>
+        </div>
+        <button id="dismissNoticeBtn" class="notice-close" aria-label="Dismiss">&times;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Settings -->
+  <div id="settingsModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="settingsTitle">Settings</h3>
+        <button class="modal-close-btn" data-close="settingsModal" aria-label="Close settings">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="setting-group">
+          <span class="setting-group-title">Session Durations (minutes)</span>
+          <div class="duration-inputs-grid">
+            <div class="input-field">
+              <label for="settingFocus">Focus</label>
+              <input type="number" id="settingFocus" min="1" max="120" value="25">
+            </div>
+            <div class="input-field">
+              <label for="settingShortBreak">Short Break</label>
+              <input type="number" id="settingShortBreak" min="1" max="60" value="5">
+            </div>
+            <div class="input-field">
+              <label for="settingLongBreak">Long Break</label>
+              <input type="number" id="settingLongBreak" min="1" max="90" value="15">
+            </div>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <span class="setting-group-title">Audio & Sound</span>
+          <div class="toggle-row">
+            <div>
+              <span class="toggle-label">Gentle Singing Bowl Chime</span>
+              <p class="toggle-desc">Plays a serene harmonic chime when a session finishes</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="settingChimeToggle" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+          
+          <div class="toggle-row">
+            <div>
+              <span class="toggle-label">Chime Volume</span>
+            </div>
+            <input type="range" id="settingChimeVolume" min="0" max="100" value="70" class="range-slider">
+          </div>
+
+          <div class="toggle-row">
+            <div>
+              <span class="toggle-label">Ambient Sound Volume</span>
+              <p class="toggle-desc">Background pink/brown focus frequency</p>
+            </div>
+            <input type="range" id="settingAmbientVolume" min="0" max="100" value="40" class="range-slider">
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <span class="setting-group-title">Flow Preferences</span>
+          <div class="toggle-row">
+            <div>
+              <span class="toggle-label">Auto-start Breaks</span>
+              <p class="toggle-desc">Seamlessly begin break timer when focus completes</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="settingAutoBreak">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="toggle-row">
+            <div>
+              <span class="toggle-label">Auto-start Focus</span>
+              <p class="toggle-desc">Begin next focus session once break finishes</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="settingAutoFocus">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="saveSettingsBtn" class="action-btn primary-btn small-btn">Save Preferences</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: History / Completed Goals -->
+  <div id="historyModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="historyTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="historyTitle">Mindful Reflections</h3>
+        <button class="modal-close-btn" data-close="historyModal" aria-label="Close history">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="history-summary">
+          <div class="summary-stat">
+            <span id="statSessionsToday" class="stat-num">0</span>
+            <span class="stat-label">Sessions Today</span>
+          </div>
+          <div class="summary-stat">
+            <span id="statMinutesToday" class="stat-num">0</span>
+            <span class="stat-label">Minutes Focused</span>
+          </div>
+        </div>
+
+        <div class="history-list-header">
+          <span>Recent Focus Goals</span>
+          <button id="clearHistoryBtn" class="clear-btn">Clear All</button>
+        </div>
+
+        <ul id="historyList" class="history-list">
+          <li class="history-empty">No sessions recorded yet today. Begin your first intention when ready.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Box Breathing Guide -->
+  <div id="breathingModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="breathingTitle">
+    <div class="modal-card breathing-card">
+      <div class="modal-header">
+        <h3 id="breathingTitle">Pause & Breathe</h3>
+        <button class="modal-close-btn" data-close="breathingModal" aria-label="Close breathing">&times;</button>
+      </div>
+      <div class="modal-body breathing-body">
+        <p class="breathing-lead">Ground yourself with a gentle 4-4-4-4 rhythm before you start.</p>
+        <div class="breathing-circle-wrapper">
+          <div id="breathingCircle" class="breathing-circle">
+            <span id="breathingPhaseText" class="breathing-phase-text">Breathe In</span>
+          </div>
+        </div>
+        <p class="breathing-sub">Allow your shoulders to drop and relax your eyes.</p>
+      </div>
+      <div class="modal-footer breathing-footer">
+        <button id="closeBreathingBtn" class="action-btn secondary-btn small-btn">I am Ready</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

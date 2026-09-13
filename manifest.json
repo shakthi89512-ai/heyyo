@@ -1,0 +1,17 @@
+{
+  "name": "Serene — Peaceful Pomodoro",
+  "short_name": "Serene",
+  "description": "A calm, minimalist Pomodoro timer designed to help you focus with clarity and intention.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F8F6F1",
+  "theme_color": "#557560",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+# Ignore local server from Vercel deployment
+server.js
+local-dev-server.js
+*.log
+.git
